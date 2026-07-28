@@ -549,7 +549,7 @@ body{
   <div class="card">
     <div class="ig-grid">
       <div class="ig"><div class="ig-lbl">Satmob (Driver)</div><input class="ig-inp" id="f-satmob" placeholder="Nama driver" autocomplete="off"></div>
-      <div class="ig"><div class="ig-lbl">Asmob</div><input class="ig-inp" id="f-asmob" value="RIDZKY RAMADHAN" autocomplete="off"></div>
+      <div class="ig"><div class="ig-lbl">Asmob</div><input class="ig-inp" id="f-asmob" value="" autocomplete="off"></div>
       <div class="ig"><div class="ig-lbl">Plat Mobil</div><input class="ig-inp" id="f-plat" value="B 9596 UCY" autocomplete="off"></div>
       <div class="ig"><div class="ig-lbl">Tanggal Operasional</div><input class="ig-inp" id="f-tgl" type="date"></div>
       <div class="ig full"><div class="ig-lbl">Rute Armada</div><input class="ig-inp" id="f-rute" value="STR-CGKG" autocomplete="off"></div>
@@ -1479,7 +1479,7 @@ function load(){
     if(!pRaw&&!dRaw) return false;
     const p=pRaw?JSON.parse(pRaw):{}, d=dRaw?JSON.parse(dRaw):{};
     $('f-satmob').value=p.satmob||'';
-    $('f-asmob').value=p.asmob||'RIDZKY RAMADHAN';
+    $('f-asmob').value=p.asmob||'';
     $('implant-list').innerHTML=''; implantIdx=0;
     const implantList=Array.isArray(p.implants)?p.implants:(p.implant?[p.implant]:[]);
     implantList.forEach(nm=>addImplant(nm));
@@ -1535,7 +1535,7 @@ renderDatalistBaku();
 
 if(!load()){
   $('f-tgl').value=new Date().toISOString().split('T')[0];
-  $('f-asmob').value='RIDZKY RAMADHAN';
+  $('f-asmob').value='';
   addImplant();
   $('f-plat').value='B 9596 UCY';
   $('f-rute').value='STR-CGKG';
