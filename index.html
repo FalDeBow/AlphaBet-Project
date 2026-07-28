@@ -10,7 +10,7 @@
 <link rel="manifest" id="pwa-manifest">
 <link rel="apple-touch-icon" id="pwa-icon">
 
-<!-- FONT TERBARU: Plus Jakarta Sans & JetBrains Mono -->
+<!-- FONT: Plus Jakarta Sans & JetBrains Mono -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -129,10 +129,8 @@ body{
 .progress-track{ background: var(--border); border-radius: 10px; height: 8px; overflow: hidden; }
 .progress-bar{ background: linear-gradient(90deg, #0d9488, #059669); height: 100%; width: 0%; transition: width 0.4s ease; }
 
-/* ── SEARCH / FILTER BAR Titik ── */
-.search-box{
-  position:relative;margin-bottom:12px;
-}
+/* ── SEARCH BAR ── */
+.search-box{ position:relative;margin-bottom:12px; }
 .search-inp{
   width:100%;padding:10px 14px 10px 36px;
   background:var(--surface);border:1px solid var(--border);
@@ -211,7 +209,7 @@ body{
   border:1px solid var(--border2);border-radius:20px;padding:3px 12px;cursor:pointer
 }
 
-/* ── STAGING STORE CARD ── */
+/* ── STAGING STORE CARD (TASK DROP) ── */
 .cgkg-card{
   background:var(--cgkg-bg);
   border:1.5px solid var(--cgkg-mid);
@@ -232,6 +230,11 @@ body{
 }
 .cgkg-title-inp:focus{border-bottom-style:solid;border-bottom-color:#fff}
 .cgkg-title-inp::placeholder{color:rgba(255,255,255,.5)}
+.drop-tag-badge{
+  font-size:9px;font-weight:800;color:#047857;background:#a7f3d0;
+  padding:2px 8px;border-radius:10px;letter-spacing:0.5px;
+  white-space:nowrap;margin-right:4px;
+}
 .cgkg-badge{
   width:28px;height:28px;border-radius:8px;
   background:rgba(255,255,255,.2);
@@ -253,19 +256,6 @@ body{
   width:100%;font-family:var(--mono);font-size:18px;font-weight:700;
   color:var(--cgkg);border:none;outline:none;background:transparent
 }
-
-.cgkg-jam{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px 14px}
-.cjbtn{
-  width:100%;display:flex;flex-direction:column;align-items:center;
-  padding:10px 8px;border-radius:10px;
-  border:1.5px dashed var(--cgkg-mid);
-  background:rgba(255,255,255,.6);cursor:pointer;
-  font-family:var(--font);gap:2px;transition:all .2s
-}
-.cjbtn.on{border-style:solid;border-color:var(--cgkg);background:#fff}
-.cjbtn-lbl{font-size:9px;font-weight:800;text-transform:uppercase;color:var(--cgkg);opacity:.7}
-.cjbtn-val{font-size:18px;font-weight:700;color:var(--cgkg-mid);font-family:var(--mono)}
-.cjbtn.on .cjbtn-val{color:var(--cgkg)}
 
 /* ── STOP / PICKUP POINT ── */
 .stop{
@@ -325,24 +315,27 @@ body{
 .dev-ok{background:var(--green-bg);color:var(--green)}
 .dev-early{background:var(--blue-bg);color:var(--blue)}
 
+/* ── UNIFIED TIME BUTTONS & EDIT STYLE (PICKUP & SS) ── */
 .times{display:grid;grid-template-columns:repeat(2,1fr)}
-.tfield{display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px;border-right:1px solid var(--border)}
+.tfield{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 8px;border-right:1px solid var(--border)}
 .tfield:last-child{border-right:none}
 .tbtn{
   width:100%;display:flex;flex-direction:column;align-items:center;
-  padding:8px 4px;border:none;background:transparent;cursor:pointer;
-  font-family:var(--font);gap:2px;border-radius:10px;transition:all .15s
+  padding:8px 4px;border:1px dashed var(--border2);background:var(--surface2);cursor:pointer;
+  font-family:var(--font);gap:2px;border-radius:12px;transition:all .15s
 }
-.tbtn.on{background:var(--accent-light)}
+.tbtn.on{background:var(--accent-light);border-style:solid;border-color:var(--accent)}
 .tbtn-lbl{font-size:9px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--ink3)}
 .tbtn.on .tbtn-lbl{color:var(--accent)}
-.tbtn-val{font-size:15px;font-weight:700;color:var(--ink3);font-family:var(--mono)}
+.tbtn-val{font-size:16px;font-weight:700;color:var(--ink3);font-family:var(--mono)}
 .tbtn.on .tbtn-val{color:var(--ink)}
 .tedit{
   display:none;font-family:var(--font);font-size:10px;font-weight:700;
-  color:var(--ink2);background:var(--surface2);
-  border:1px solid var(--border2);border-radius:20px;padding:2px 10px;cursor:pointer
+  color:var(--ink2);background:var(--surface);
+  border:1px solid var(--border2);border-radius:20px;padding:3px 12px;cursor:pointer;
+  transition:all 0.15s;
 }
+.tedit:active{background:var(--ink);color:#fff}
 
 /* ── BUTTON ADD ── */
 .btn-add{
@@ -519,7 +512,7 @@ body{
   color:var(--ink2);cursor:pointer
 }
 .preview-wa{
-  flex:1;padding:14px;background:var(--ink);
+  flex:1.2;padding:14px;background:var(--ink);
   border:none;border-radius:12px;
   font-family:var(--font);font-size:12px;font-weight:700;
   color:#fff;cursor:pointer;white-space:nowrap
@@ -556,7 +549,7 @@ body{
   <div class="card">
     <div class="ig-grid">
       <div class="ig"><div class="ig-lbl">Satmob (Driver)</div><input class="ig-inp" id="f-satmob" placeholder="Nama driver" autocomplete="off"></div>
-      <div class="ig"><div class="ig-lbl">Asmob</div><input class="ig-inp" id="f-asmob" value="" autocomplete="off"></div>
+      <div class="ig"><div class="ig-lbl">Asmob</div><input class="ig-inp" id="f-asmob" value="RIDZKY RAMADHAN" autocomplete="off"></div>
       <div class="ig"><div class="ig-lbl">Plat Mobil</div><input class="ig-inp" id="f-plat" value="B 9596 UCY" autocomplete="off"></div>
       <div class="ig"><div class="ig-lbl">Tanggal Operasional</div><input class="ig-inp" id="f-tgl" type="date"></div>
       <div class="ig full"><div class="ig-lbl">Rute Armada</div><input class="ig-inp" id="f-rute" value="STR-CGKG" autocomplete="off"></div>
@@ -587,15 +580,15 @@ body{
     </div>
   </div>
 
-  <div class="sec-label">SS (Staging Store)</div>
+  <div class="sec-label">SS (Staging Store) - Task Drop</div>
   <div id="ss-list"></div>
-  <button class="btn-add" onclick="addSS()">＋ Tambah SS Baru</button>
+  <button class="btn-add" onclick="addSS()">＋ Tambah SS Drop Baru</button>
 
-  <div class="sec-label">PickUp Point</div>
+  <div class="sec-label">PickUp Point (Task Pickup)</div>
   
   <div class="progress-wrap">
     <div class="progress-text">
-      <span>Progres Kunjungan Titik</span>
+      <span>Progres PickUp Point</span>
       <span id="progress-pct">0%</span>
     </div>
     <div class="progress-track">
@@ -603,7 +596,6 @@ body{
     </div>
   </div>
 
-  <!-- Boks Pencarian Cepat Titik -->
   <div class="search-box">
     <span class="search-icon">🔍</span>
     <input class="search-inp" id="search-stop" placeholder="Cari titik jemput..." oninput="filterStops()">
@@ -614,11 +606,11 @@ body{
 
   <div class="sec-label">Rekapitulasi PickUp Point</div>
   <div class="Rekapitulasi-card">
-    <div class="Rekapitulasi-title">Total PickUp Point (di luar SS)</div>
+    <div class="Rekapitulasi-title">Total PickUp Point (Di luar SS Drop)</div>
     <div class="Rekapitulasi-grid">
-      <div class="rk"><div class="rk-num" id="r-paket">0</div><div class="rk-lbl">Paket</div></div>
-      <div class="rk"><div class="rk-num" id="r-mb">0</div><div class="rk-lbl">MB</div></div>
-      <div class="rk"><div class="rk-num" id="r-bp">0</div><div class="rk-lbl">BP</div></div>
+      <div class="rk"><div class="rk-num" id="r-paket">0</div><div class="rk-lbl">Paket PickUp</div></div>
+      <div class="rk"><div class="rk-num" id="r-mb">0</div><div class="rk-lbl">MB PickUp</div></div>
+      <div class="rk"><div class="rk-num" id="r-bp">0</div><div class="rk-lbl">BP PickUp</div></div>
     </div>
     <div id="ss-sum-list"></div>
     <div class="noted-wrap">
@@ -633,7 +625,7 @@ body{
     <button class="btn-cgkg" id="btn-report-ss" onclick="reportSSPicker()">📋 Report SS</button>
     <button class="btn-wa" onclick="showReport('all')">✅ Kirim Laporan!</button>
   </div>
-  <div class="bar-hint">Tap untuk preview → WA Saja atau GSheet & WA</div>
+  <div class="bar-hint">Tap untuk preview → WA + Post atau Post All</div>
 </div>
 
 <!-- DATALIST NAMA BAKU -->
@@ -675,8 +667,9 @@ body{
     </div>
     <div class="preview-btns">
       <button class="preview-copy" onclick="copyReport()">📋 Salin Teks</button>
-      <button class="preview-wa" onclick="sendWa()">📲 WA Saja</button>
-      <button class="preview-gsheet" id="btn-gsheet" onclick="sendToGSheet()">📊 GSheet & WA</button>
+      <!-- TOMBOL SESUAI PERMINTAAN -->
+      <button class="preview-wa" onclick="sendWa()">📲 WA + Post</button>
+      <button class="preview-gsheet" id="btn-gsheet" onclick="sendToGSheet()">📤 Post All</button>
     </div>
   </div>
 </div>
@@ -685,8 +678,8 @@ body{
 
 <script>
 // ==============================================
-// URL WEB APP GOOGLE APPS SCRIPT PRESET
-const GSHEET_URL = "https://script.google.com/macros/s/AKfycbzoh9cjjQv-8DcsFzKUd3-vCxTENyjDaxkPsNRB9nQp4DHRITgNP3YbJ1n1M69G4JUr/exec";
+// URL WEB APP APPS SCRIPT TERBARU
+const GSHEET_URL = "https://script.google.com/macros/s/AKfycbwPQcRWnWbfBSo3fmv7oE8UEvg0kpuFJF5Ri0XoqjoIwJRCIlY-gYzmmrP0bu2T7UAv/exec";
 // ==============================================
 
 const NAMA_BAKU = [
@@ -767,7 +760,7 @@ function renderDatalistBaku() {
   dl.innerHTML = uniqueNames.map(nama => `<option value="${esc(nama)}">`).join('');
 }
 
-const PKEY='bts_p4', DKEY='bts_d4';
+const PKEY='bts_p5', DKEY='bts_d5';
 let stopIdx=0, implantIdx=0, ssIdx=0, modalCtx=null, currentReport='';
 
 function $(id){ return document.getElementById(id); }
@@ -798,6 +791,7 @@ function stopIds(){ return [...document.querySelectorAll('.stop')].map(el=>+el.i
 
 function rekal(){
   let p=0, m=0, b=0;
+  // HANYA MENGHITUNG PICKUP POINT (TIDAK MENGGABUNGKAN DROP SS)
   stopIds().forEach(i=>{
     p+=+($(`sp-${i}`)?.value||0);
     m+=+($(`sm-${i}`)?.value||0);
@@ -868,6 +862,7 @@ function updateReportButtons(){
   if(btn) btn.style.display=has?'':'none';
 }
 
+// TOTAL DROP SS DIPISAHKAN DI REKAPITULASI
 function renderSSSum(){
   const wrap=$('ss-sum-list'); if(!wrap) return;
   const ids=ssIds();
@@ -877,9 +872,9 @@ function renderSSSum(){
     const m=+($(`ss-mb-${i}`)?.value||0);
     const b=+($(`ss-bp-${i}`)?.value||0);
     return `<div class="cgkg-sum">
-      <div class="cgkg-sum-lbl">${esc(ssName(i))}</div>
+      <div class="cgkg-sum-lbl">DROP: ${esc(ssName(i))}</div>
       <div class="cgkg-sum-vals">
-        <div class="cgkg-chip">${p.toLocaleString('id')} PKT</div>
+        <div class="cgkg-chip">${p.toLocaleString('id')} PKT DROP</div>
         <div class="cgkg-chip">${m} MB</div>
         <div class="cgkg-chip">${b} BP</div>
       </div>
@@ -919,9 +914,7 @@ function _setLocation(i, url) {
   const btn = $(`tbtn-Tiba-${i}`);
   if (btn) btn.dataset.loc = url;
   const tag = $(`loc-tag-${i}`);
-  if (tag) {
-    tag.style.display = 'inline-block';
-  }
+  if (tag) tag.style.display = 'inline-block';
 }
 
 function _clearLocation(i) {
@@ -954,7 +947,7 @@ function addStop(d={}){
     
     <div class="stop-body">
       <div class="pkt-row">
-        <div class="pkt"><div class="pkt-lbl">Paket</div><input class="pkt-inp" id="sp-${i}" type="number" inputmode="numeric" placeholder="0" value="${d.paket||''}"></div>
+        <div class="pkt"><div class="pkt-lbl">Paket PickUp</div><input class="pkt-inp" id="sp-${i}" type="number" inputmode="numeric" placeholder="0" value="${d.paket||''}"></div>
         <div class="pkt"><div class="pkt-lbl">MB</div><input class="pkt-inp" id="sm-${i}" type="number" inputmode="numeric" placeholder="0" value="${d.mb||''}"></div>
         <div class="pkt"><div class="pkt-lbl">BP</div><input class="pkt-inp" id="sb-${i}" type="number" inputmode="numeric" placeholder="0" value="${d.bp||''}"></div>
       </div>
@@ -973,7 +966,7 @@ function addStop(d={}){
             <div class="tbtn-lbl">${k}</div>
             <div class="tbtn-val" id="tval-${k}-${i}">--:--</div>
           </button>
-          <button class="tedit" id="tedit-${k}-${i}" onclick="openModal('stop','${k}',${i})">✏️ Ubah</button>
+          <button class="tedit" id="tedit-${k}-${i}" onclick="openModal('stop','${k}',${i})">✏️ Edit Jam</button>
         </div>`).join('')}
       </div>
     </div>`;
@@ -1004,6 +997,8 @@ function implantNames(){ return implantIds().map(i=>$(`fi-implant-${i}`)?.value|
 
 function ssIds(){ return [...document.querySelectorAll('.ss-card')].map(el=>+el.id.split('-')[1]); }
 function ssName(i){ return ($(`ss-name-${i}`)?.value||'').trim() || 'SS'; }
+
+// SS (STAGING STORE) UNIFIED EDIT UI
 function addSS(d={}){
   ssIdx++; const i=ssIdx;
   const el=document.createElement('div');
@@ -1015,6 +1010,7 @@ function addSS(d={}){
         <div style="min-width:0;flex:1">
           <input class="cgkg-title-inp" id="ss-name-${i}" list="list-nama-baku" placeholder="Nama SS (cth: SS CGKG)" autocomplete="off" value="${esc(d.name)}">
         </div>
+        <span class="drop-tag-badge">TASK DROP</span>
       </div>
       <div style="display:flex;align-items:center;gap:6px">
         <button class="cgkg-del" onclick="reportOneSS(${i})" title="Report SS ini">📋</button>
@@ -1022,24 +1018,24 @@ function addSS(d={}){
       </div>
     </div>
     <div class="cgkg-pkt">
-      <div class="cpkt"><div class="cpkt-lbl">Paket</div><input class="cpkt-inp" id="ss-paket-${i}" type="number" inputmode="numeric" placeholder="0" value="${d.paket||''}"></div>
-      <div class="cpkt"><div class="cpkt-lbl">MB</div><input class="cpkt-inp" id="ss-mb-${i}" type="number" inputmode="numeric" placeholder="0" value="${d.mb||''}"></div>
-      <div class="cpkt"><div class="cpkt-lbl">BP</div><input class="cpkt-inp" id="ss-bp-${i}" type="number" inputmode="numeric" placeholder="0" value="${d.bp||''}"></div>
+      <div class="cpkt"><div class="cpkt-lbl">Paket Drop</div><input class="cpkt-inp" id="ss-paket-${i}" type="number" inputmode="numeric" placeholder="0" value="${d.paket||''}"></div>
+      <div class="cpkt"><div class="cpkt-lbl">MB Drop</div><input class="cpkt-inp" id="ss-mb-${i}" type="number" inputmode="numeric" placeholder="0" value="${d.mb||''}"></div>
+      <div class="cpkt"><div class="cpkt-lbl">BP Drop</div><input class="cpkt-inp" id="ss-bp-${i}" type="number" inputmode="numeric" placeholder="0" value="${d.bp||''}"></div>
     </div>
-    <div class="cgkg-jam">
-      <div class="cjam-col">
-        <button class="cjbtn" id="ssjbtn-tiba-${i}" onclick="stampSS('tiba',${i})">
-          <div class="cjbtn-lbl">🟢 Tiba</div>
-          <div class="cjbtn-val" id="ssjval-tiba-${i}">--:--</div>
+    <div class="times" style="background:var(--cgkg-bg);padding:10px;">
+      <div class="tfield">
+        <button class="tbtn" id="ssjbtn-tiba-${i}" onclick="stampSS('tiba',${i})">
+          <div class="tbtn-lbl" style="color:var(--cgkg)">🟢 Tiba SS Drop</div>
+          <div class="tbtn-val" id="ssjval-tiba-${i}">--:--</div>
         </button>
-        <button class="cjedit" id="ssjedit-tiba-${i}" onclick="openModal('ss','tiba',${i})">✏️ ubah</button>
+        <button class="tedit" id="ssjedit-tiba-${i}" onclick="openModal('ss','tiba',${i})">✏️ Edit Jam</button>
       </div>
-      <div class="cjam-col">
-        <button class="cjbtn" id="ssjbtn-brkt-${i}" onclick="stampSS('brkt',${i})">
-          <div class="cjbtn-lbl">🔴 Berangkat</div>
-          <div class="cjbtn-val" id="ssjval-brkt-${i}">--:--</div>
+      <div class="tfield">
+        <button class="tbtn" id="ssjbtn-brkt-${i}" onclick="stampSS('brkt',${i})">
+          <div class="tbtn-lbl" style="color:var(--cgkg)">🔴 Brkt SS</div>
+          <div class="tbtn-val" id="ssjval-brkt-${i}">--:--</div>
         </button>
-        <button class="cjedit" id="ssjedit-brkt-${i}" onclick="openModal('ss','brkt',${i})">✏️ ubah</button>
+        <button class="tedit" id="ssjedit-brkt-${i}" onclick="openModal('ss','brkt',${i})">✏️ Edit Jam</button>
       </div>
     </div>`;
   $('ss-list').appendChild(el);
@@ -1153,7 +1149,7 @@ function openModal(type,...args){
     cur=$(`jbtn-${key}`)?.dataset?.t||'';
   } else if(type==='ss'){
     const [key,i]=args; modalCtx={type:'ss',key,i};
-    lbl=(key==='tiba'?'Tiba ':'Berangkat ')+ssName(i);
+    lbl=(key==='tiba'?'Tiba ':'Berangkat ')+ssName(i)+' (Drop Task)';
     cur=$(`ssjbtn-${key}-${i}`)?.dataset?.t||'';
   } else {
     const [k,i]=args; modalCtx={type:'stop',k,i};
@@ -1225,7 +1221,7 @@ function buildSSReport(i){
   const ssBp=+($(`ss-bp-${i}`)?.value||0);
   const ssPaket=+($(`ss-paket-${i}`)?.value||0);
 
-  let txt='*REPORT DELIVERY HUB SUNTER*\n\n';
+  let txt='*REPORT DROP STAGING STORE (SS)*\n\n';
   txt+=`HARI            : ${hari}\n`;
   txt+=`TANGGAL     : ${tglFmt}\n`;
   txt+=`NOPOL          : ${plat}\n`;
@@ -1233,14 +1229,14 @@ function buildSSReport(i){
   if(asmob) txt+=`ASMOB          : ${asmob}\n`;
   txt+=`\nHUB STR            : ${hubStr}\n`;
   txt+=`IN ${ssName(i).toUpperCase().padEnd(16)} : ${inSS}\n\n`;
-  txt+=`ISI MUATAN \n`;
+  txt+=`ISI MUATAN DROP\n`;
   if(ssMb>0) txt+=`${ssMb} MB\n`;
   if(ssBp>0) txt+=`${ssBp} BP\n`;
-  txt+=`TOTAL PARCEL *${ssPaket.toLocaleString('id')}*`;
+  txt+=`TOTAL PARCEL DROP *${ssPaket.toLocaleString('id')}*`;
   return txt;
 }
 
-// ── GENERATE TEXT REPORT (TANPA PIN MAPS UNTUK WA) ──
+// FORMAT TEXT REPORT WA (DIPISAHKAN ANTARA DROP SS & PICKUP)
 function buildAllReport(){
   const {hari,tglFull,tglFmt}=getDateParts();
   const tgl=$('f-tgl').value;
@@ -1268,44 +1264,51 @@ function buildAllReport(){
   txt+='*Rute : '+rute+'*\n\n';
   txt+='*Berangkat : '+brkt+'*\n\n';
 
-  ssIds().forEach(i=>{
-    const p=+($(`ss-paket-${i}`)?.value||0);
-    const m=+($(`ss-mb-${i}`)?.value||0);
-    const b=+($(`ss-bp-${i}`)?.value||0);
-    const tiba=$(`ssjbtn-tiba-${i}`)?.dataset?.t||'-';
-    const brktSS=$(`ssjbtn-brkt-${i}`)?.dataset?.t||'-';
-    const ext=[];
-    if(m>0) ext.push(m+'MB');
-    if(b>0) ext.push(b+'BP');
-    const extStr=ext.length?' ('+ext.join(' + ')+')':'';
-    txt+='*'+ssName(i)+' : '+p.toLocaleString('id')+extStr+'*\n\n';
-    txt+='Tiba : '+tiba+'\n';
-    txt+='Berangkat : '+brktSS+'\n\n';
-  });
+  // SS TASK DROP
+  if(ssIds().length > 0) {
+    txt += '--- *TASK DROP STAGING STORE* ---\n';
+    ssIds().forEach(i=>{
+      const p=+($(`ss-paket-${i}`)?.value||0);
+      const m=+($(`ss-mb-${i}`)?.value||0);
+      const b=+($(`ss-bp-${i}`)?.value||0);
+      const tiba=$(`ssjbtn-tiba-${i}`)?.dataset?.t||'-';
+      const brktSS=$(`ssjbtn-brkt-${i}`)?.dataset?.t||'-';
+      const ext=[];
+      if(m>0) ext.push(m+'MB');
+      if(b>0) ext.push(b+'BP');
+      const extStr=ext.length?' ('+ext.join(' + ')+')':'';
+      txt+='*'+ssName(i)+' (Drop) : '+p.toLocaleString('id')+extStr+'*\n';
+      txt+='Tiba : '+tiba+'\n';
+      txt+='Berangkat : '+brktSS+'\n\n';
+    });
+  }
 
-  stopIds().forEach(i=>{
-    const nama=$('sn-'+i)?.value||'Stop '+i;
-    const trip=$('st-'+i)?.value||'';
-    const namaFull=trip?nama+' '+trip:nama;
-    const paket=+($('sp-'+i)?.value||0);
-    const mb=+($('sm-'+i)?.value||0);
-    const bp=+($('sb-'+i)?.value||0);
-    const eta=$('se-'+i)?.value||'';
-    const ket=$('sk-'+i)?.value||'';
-    const tiba=$('tbtn-Tiba-'+i)?.dataset?.t||'-';
-    const sbrkt=$('tbtn-Brkt-'+i)?.dataset?.t||'-';
-    
-    // CATATAN: Teks Pin Maps GPS sengaja DIHILANGKAN dari Teks WA
-    const ext=[];
-    if(mb>0) ext.push(mb+'MB');
-    if(bp>0) ext.push(bp+'BP');
-    var extStr=ext.length?' ('+ext.join(' + ')+')':'';
-    txt+='*'+namaFull+' : '+paket.toLocaleString('id')+extStr+'*\n';
-    if(eta) txt+='ETA : '+eta+'\n';
-    if(ket) txt+='KET : '+ket+'\n';
-    txt+='Tiba : '+tiba+'\n';
-    txt+='Berangkat : '+sbrkt+'\n\n';
-  });
+  // PICKUP POINTS
+  if(stopIds().length > 0) {
+    txt += '--- *TASK PICKUP POINT* ---\n';
+    stopIds().forEach(i=>{
+      const nama=$('sn-'+i)?.value||'Stop '+i;
+      const trip=$('st-'+i)?.value||'';
+      const namaFull=trip?nama+' '+trip:nama;
+      const paket=+($('sp-'+i)?.value||0);
+      const mb=+($('sm-'+i)?.value||0);
+      const bp=+($('sb-'+i)?.value||0);
+      const eta=$('se-'+i)?.value||'';
+      const ket=$('sk-'+i)?.value||'';
+      const tiba=$('tbtn-Tiba-'+i)?.dataset?.t||'-';
+      const sbrkt=$('tbtn-Brkt-'+i)?.dataset?.t||'-';
+      
+      const ext=[];
+      if(mb>0) ext.push(mb+'MB');
+      if(bp>0) ext.push(bp+'BP');
+      var extStr=ext.length?' ('+ext.join(' + ')+')':'';
+      txt+='*'+namaFull+' : '+paket.toLocaleString('id')+extStr+'*\n';
+      if(eta) txt+='ETA : '+eta+'\n';
+      if(ket) txt+='KET : '+ket+'\n';
+      txt+='Tiba : '+tiba+'\n';
+      txt+='Berangkat : '+sbrkt+'\n\n';
+    });
+  }
 
   let tp=0, tm=0, tb=0;
   stopIds().forEach(i=>{
@@ -1313,9 +1316,9 @@ function buildAllReport(){
     tm+=+($('sm-'+i)?.value||0);
     tb+=+($('sb-'+i)?.value||0);
   });
-  txt+='*Total Bulky Reguler : '+tp.toLocaleString('id')+'*\n';
-  txt+='*Total MB : '+tm+'*\n';
-  txt+='*Total BP : '+tb+'*\n\n';
+  txt+='*Total PickUp Reguler : '+tp.toLocaleString('id')+'*\n';
+  txt+='*Total MB PickUp : '+tm+'*\n';
+  txt+='*Total BP PickUp : '+tb+'*\n\n';
   if($('f-noted').value) txt+=$('f-noted').value+'\n\n';
   txt+='Tiba di HUB : '+hub;
   return txt;
@@ -1344,18 +1347,19 @@ function sendWa(){
   closePreview();
 }
 
-// ── SEND TO GSHEET (DENGAN TETA P MENGIRIM LINK PIN MAPS GPS) ──
+// ── SEND TO GSHEET ──
 function sendToGSheet() {
   const btn = $('btn-gsheet');
   btn.textContent = '⏳ Mengirim...';
   btn.disabled = true;
 
   const details = [];
+  let totalPaketPickup = 0, totalMbPickup = 0, totalBpPickup = 0;
 
-  // 1. Staging Store
+  // 1. Task Drop SS
   ssIds().forEach(i => {
     details.push({
-      tipe: 'SS',
+      tipe: 'SS (Drop)',
       nama: ssName(i),
       trip: '-',
       paket: +($(`ss-paket-${i}`)?.value || 0),
@@ -1369,15 +1373,20 @@ function sendToGSheet() {
     });
   });
 
-  // 2. PickUp Points (Pin Maps GPS TETAP DIKIRIM ke Sheet)
+  // 2. Task PickUp Points
   stopIds().forEach((i, idx) => {
+    const p = +($(`sp-${i}`)?.value || 0);
+    const m = +($(`sm-${i}`)?.value || 0);
+    const b = +($(`sb-${i}`)?.value || 0);
+    totalPaketPickup += p; totalMbPickup += m; totalBpPickup += b;
+
     details.push({
       tipe: `PickUp Point ${idx + 1}`,
       nama: $(`sn-${i}`)?.value || `PickUp Point ${idx + 1}`,
       trip: $(`st-${i}`)?.value || '-',
-      paket: +($(`sp-${i}`)?.value || 0),
-      mb: +($(`sm-${i}`)?.value || 0),
-      bp: +($(`sb-${i}`)?.value || 0),
+      paket: p,
+      mb: m,
+      bp: b,
       eta: $(`se-${i}`)?.value || '-',
       tiba: $(`tbtn-Tiba-${i}`)?.dataset?.t || '-',
       brkt: $(`tbtn-Brkt-${i}`)?.dataset?.t || '-',
@@ -1386,14 +1395,20 @@ function sendToGSheet() {
     });
   });
 
+  const jamStart = $(`jbtn-brkt`)?.dataset?.t || ($(`jval-brkt`)?.textContent !== '--:--' ? $(`jval-brkt`)?.textContent : '-');
+  const jamFinish = $(`jbtn-hub`)?.dataset?.t || ($(`jval-hub`)?.textContent !== '--:--' ? $(`jval-hub`)?.textContent : '-');
+
   const payload = {
     tanggal: $('f-tgl').value,
     satmob: $('f-satmob').value || '-',
     asmob: $('f-asmob').value || '-',
     plat: $('f-plat').value || '-',
     rute: $('f-rute').value || '-',
-    jam_start: $('jbtn-brkt')?.dataset?.t || '-',
-    jam_finish: $('jbtn-hub')?.dataset?.t || '-',
+    jam_start: jamStart,
+    jam_finish: jamFinish,
+    total_paket: totalPaketPickup,
+    total_mb: totalMbPickup,
+    total_bp: totalBpPickup,
     details: details
   };
 
@@ -1407,23 +1422,23 @@ function sendToGSheet() {
   .then(response => response.json())
   .then(data => {
     if(data.status === "success") {
-      toast('✅ Data presisi dikirim ke Google Sheets!');
+      toast('✅ Data berhasil dikirim ke Google Sheets!');
     } else {
       toast('⚠️ Terhubung, tapi ada kendala sheet.');
     }
-    btn.textContent = '📊 GSheet & WA';
+    btn.textContent = '📤 Post All';
     btn.disabled = false;
     setTimeout(sendWa, 800);
   })
   .catch(err => {
     console.error(err);
     toast('❌ Gagal sinkronisasi. Cek jaringan/URL WebApp.');
-    btn.textContent = '📊 GSheet & WA';
+    btn.textContent = '📤 Post All';
     btn.disabled = false;
   });
 }
 
-// ── SAVE / LOAD LOCAL STORAGE ──
+// ── LOCAL STORAGE ──
 let _st;
 function autoSave(){ clearTimeout(_st); _st=setTimeout(_doSave,400); }
 function _doSave(){
@@ -1464,7 +1479,7 @@ function load(){
     if(!pRaw&&!dRaw) return false;
     const p=pRaw?JSON.parse(pRaw):{}, d=dRaw?JSON.parse(dRaw):{};
     $('f-satmob').value=p.satmob||'';
-    $('f-asmob').value=p.asmob||'';
+    $('f-asmob').value=p.asmob||'RIDZKY RAMADHAN';
     $('implant-list').innerHTML=''; implantIdx=0;
     const implantList=Array.isArray(p.implants)?p.implants:(p.implant?[p.implant]:[]);
     implantList.forEach(nm=>addImplant(nm));
@@ -1520,7 +1535,7 @@ renderDatalistBaku();
 
 if(!load()){
   $('f-tgl').value=new Date().toISOString().split('T')[0];
-  $('f-asmob').value='';
+  $('f-asmob').value='RIDZKY RAMADHAN';
   addImplant();
   $('f-plat').value='B 9596 UCY';
   $('f-rute').value='STR-CGKG';
@@ -1533,7 +1548,7 @@ setInterval(checkNewDay, 60000);
 </script>
 
 <script>
-// PWA
+// PWA SETUP
 (function(){
   const svg=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="100" fill="#0f172a"/><text x="256" y="340" font-size="280" text-anchor="middle" font-family="sans-serif">🚚</text></svg>`;
   const iconUrl='data:image/svg+xml;base64,'+btoa(unescape(encodeURIComponent(svg)));
@@ -1542,7 +1557,7 @@ setInterval(checkNewDay, 60000);
   const blob=new Blob([JSON.stringify(manifest)],{type:'application/json'});
   document.getElementById('pwa-manifest').href=URL.createObjectURL(blob);
   if('serviceWorker' in navigator){
-    const sw=`const C='bts-v4';self.addEventListener('install',e=>self.skipWaiting());self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==C).map(x=>caches.delete(x))))));self.addEventListener('fetch',e=>e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).catch(()=>new Response('')))));`;
+    const sw=`const C='bts-v5';self.addEventListener('install',e=>self.skipWaiting());self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==C).map(x=>caches.delete(x))))));self.addEventListener('fetch',e=>e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).catch(()=>new Response('')))));`;
     navigator.serviceWorker.register(URL.createObjectURL(new Blob([sw],{type:'text/javascript'}))).catch(()=>{});
   }
 })();
