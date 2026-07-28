@@ -550,9 +550,9 @@ body{
     <div class="ig-grid">
       <div class="ig"><div class="ig-lbl">Satmob (Driver)</div><input class="ig-inp" id="f-satmob" placeholder="Nama driver" autocomplete="off"></div>
       <div class="ig"><div class="ig-lbl">Asmob</div><input class="ig-inp" id="f-asmob" value="" autocomplete="off"></div>
-      <div class="ig"><div class="ig-lbl">Plat Mobil</div><input class="ig-inp" id="f-plat" value="B 9596 UCY" autocomplete="off"></div>
+      <div class="ig"><div class="ig-lbl">Plat Mobil</div><input class="ig-inp" id="f-plat" value="" autocomplete="off"></div>
       <div class="ig"><div class="ig-lbl">Tanggal Operasional</div><input class="ig-inp" id="f-tgl" type="date"></div>
-      <div class="ig full"><div class="ig-lbl">Rute Armada</div><input class="ig-inp" id="f-rute" value="STR-CGKG" autocomplete="off"></div>
+      <div class="ig full"><div class="ig-lbl">Rute Armada</div><input class="ig-inp" id="f-rute" value="" autocomplete="off"></div>
       <div class="ig full">
         <div class="ig-lbl">Implant</div>
         <div id="implant-list"></div>
@@ -1213,7 +1213,7 @@ function getDateParts(){
 function buildSSReport(i){
   const {hari,tglFmt}=getDateParts();
   const satmob=$('f-satmob').value.trim();
-  const plat=$('f-plat').value||'B 9596 UCY';
+  const plat=$('f-plat').value||'';
   const asmob=$('f-asmob').value.trim();
   const hubStr=$('jbtn-brkt')?.dataset?.t||'--:--';
   const inSS=$(`ssjbtn-tiba-${i}`)?.dataset?.t||'--:--';
@@ -1248,10 +1248,10 @@ function buildAllReport(){
   const tglFormatted=HARI[d.getDay()]+', '+dd+'/'+mm+'/'+yyyy;
 
   const satmob=$('f-satmob').value.trim();
-  const plat=$('f-plat').value||'B 9596 UCY';
+  const plat=$('f-plat').value||'';
   const asmob=$('f-asmob').value.trim();
   const implantArr=implantNames();
-  const rute=$('f-rute').value||'STR-CGKG';
+  const rute=$('f-rute').value||'';
   const brkt=$('jbtn-brkt')?.dataset?.t||'-';
   const hub=$('jbtn-hub')?.dataset?.t||'-';
 
@@ -1483,8 +1483,8 @@ function load(){
     $('implant-list').innerHTML=''; implantIdx=0;
     const implantList=Array.isArray(p.implants)?p.implants:(p.implant?[p.implant]:[]);
     implantList.forEach(nm=>addImplant(nm));
-    $('f-plat').value=p.plat||'B 9596 UCY';
-    $('f-rute').value=p.rute||'STR-CGKG';
+    $('f-plat').value=p.plat||'';
+    $('f-rute').value=p.rute||'';
     $('f-tgl').value=d.tgl||new Date().toISOString().split('T')[0];
     $('f-noted').value=d.noted||'';
     if(d.brkt) _applyJam('brkt',d.brkt);
@@ -1537,8 +1537,8 @@ if(!load()){
   $('f-tgl').value=new Date().toISOString().split('T')[0];
   $('f-asmob').value='';
   addImplant();
-  $('f-plat').value='B 9596 UCY';
-  $('f-rute').value='STR-CGKG';
+  $('f-plat').value='';
+  $('f-rute').value='';
   addSS({name:'SS CGKG'});
   updateDateHeader();
 } else {
