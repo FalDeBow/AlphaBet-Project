@@ -115,34 +115,6 @@ body{
   padding:16px 6px 8px;display:flex;align-items:center;gap:8px
 }
 
-/* ── TIPE UNIT ARMADA CAROUSEL (INSIDE DETIL OPERASIONAL) ── */
-.unit-scroll-container{
-  display:flex;gap:8px;overflow-x:auto;
-  scroll-behavior:smooth;padding:2px 0;
-  -ms-overflow-style:none;scrollbar-width:none;
-}
-.unit-scroll-container::-webkit-scrollbar{display:none}
-
-.unit-chip{
-  flex:0 0 auto;
-  background:var(--ios-card);
-  border:1px solid var(--ios-border);
-  border-radius:20px;
-  padding:6px 14px;
-  font-size:12px;font-weight:700;
-  color:var(--ios-text);
-  cursor:pointer;
-  transition:all 0.2s ease;
-  display:flex;align-items:center;gap:6px;
-  box-shadow:0 2px 6px rgba(0,0,0,0.02);
-}
-.unit-chip.active{
-  background:var(--ios-blue);
-  color:#ffffff;
-  border-color:var(--ios-blue);
-  box-shadow:0 3px 10px rgba(0,122,255,0.3);
-}
-
 /* ── PROGRESS BAR UX ── */
 .progress-wrap{margin:4px 0 14px 0}
 .progress-text{font-size:11px;font-weight:700;color:var(--ios-subtext);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px;display:flex;justify-content:space-between}
@@ -184,6 +156,12 @@ body{
   color:var(--ios-text);border:none;outline:none;background:transparent
 }
 .ig-inp::placeholder{color:var(--ios-subtext);font-weight:400;font-size:14px}
+
+/* SELECT BOX TIPE UNIT */
+select.ig-inp{
+  appearance:none;-webkit-appearance:none;
+  cursor:pointer;color:var(--ios-blue);font-weight:700;
+}
 
 /* ── IMPLANT LIST ── */
 .implant-row{display:flex;align-items:center;gap:6px;margin-bottom:6px}
@@ -354,21 +332,34 @@ body{
 .tedit{
   display:none;font-size:10px;font-weight:700;
   color:var(--ios-blue);background:var(--ios-card);
-  border:1px solid var(--ios-border);border-radius:20px;padding:3px 12px;cursor:pointer
+  border:1px solid var(--ios-border);border-radius:20px;padding:4px 12px;cursor:pointer
 }
 
-/* ── BUTTON ADD ── */
+/* ── BUTTON ADD & ACTION ROW ── */
+.action-row-btn{display:flex;gap:8px;margin-bottom:14px;}
 .btn-add{
-  width:100%;padding:14px;
+  flex:2;padding:14px;
   background:var(--ios-card);
   border:1px solid var(--ios-border);
   border-radius:var(--ios-radius);
   font-size:14px;font-weight:700;
-  color:var(--ios-blue);cursor:pointer;margin-bottom:14px;
+  color:var(--ios-blue);cursor:pointer;
   box-shadow:var(--ios-shadow);
   transition:transform 0.15s
 }
 .btn-add:active{transform:scale(0.98)}
+
+.btn-danger-action{
+  flex:1;padding:14px;
+  background:var(--ios-red-bg);
+  border:1px solid rgba(255, 59, 48, 0.2);
+  border-radius:var(--ios-radius);
+  font-size:13px;font-weight:700;
+  color:var(--ios-red);cursor:pointer;
+  box-shadow:var(--ios-shadow);
+  transition:transform 0.15s
+}
+.btn-danger-action:active{transform:scale(0.98)}
 
 /* ── REKAPITULASI ── */
 .Rekapitulasi-card{
@@ -553,7 +544,7 @@ body{
     <div class="di">
       <div class="di-icon">🚚</div>
       <div class="di-info">
-        <div class="di-title">DAILY REPORT TRANSPORT</div>
+        <div class="di-title">Daily Report Transport</div>
         <div class="di-sub" id="di-date">--/--/----</div>
       </div>
       <div class="di-pill" id="pill">Draft</div>
@@ -570,28 +561,29 @@ body{
 
   <div class="sec-label">Detil Operasional</div>
   <div class="ios-card">
-    
-    <!-- 🌟 TIPE UNIT ARMADA CAROUSEL DI DALAM DETIL OPERASIONAL -->
-    <div class="ig full" style="background:var(--ios-subcard);padding:12px 14px;">
-      <div class="ig-lbl">Tipe Unit Armada</div>
-      <div class="unit-scroll-container" id="unitContainer" style="margin-top:4px;">
-        <div class="unit-chip active" onclick="selectUnit(this, 'Blindvan')">Blindvan</div>
-        <div class="unit-chip" onclick="selectUnit(this, 'L300')">L300</div>
-        <div class="unit-chip" onclick="selectUnit(this, 'Traga')">Traga</div>
-        <div class="unit-chip" onclick="selectUnit(this, 'CDE')">CDE</div>
-        <div class="unit-chip" onclick="selectUnit(this, 'CDE-L')">CDE-L</div>
-        <div class="unit-chip" onclick="selectUnit(this, 'CDD')">CDD</div>
-        <div class="unit-chip" onclick="selectUnit(this, 'CDD-L')">CDD-L</div>
-        <div class="unit-chip" onclick="selectUnit(this, 'Fuso')">Fuso</div>
-      </div>
-    </div>
-
     <div class="ig-grid">
       <div class="ig"><div class="ig-lbl">Satmob (Driver)</div><input class="ig-inp" id="f-satmob" placeholder="Nama driver" autocomplete="off"></div>
       <div class="ig"><div class="ig-lbl">Asmob</div><input class="ig-inp" id="f-asmob" value="" autocomplete="off"></div>
-      <div class="ig"><div class="ig-lbl">Plat Mobil</div><input class="ig-inp" id="f-plat" value="" autocomplete="off" style="text-transform:uppercase"></div>
+      
+      <!-- 🌟 PLAT MOBIL DAN TIPE UNIT SEJAJAR DALAM 1 BARIS (KISI 2-KOLOM) -->
+      <div class="ig"><div class="ig-lbl">Plat Mobil</div><input class="ig-inp" id="f-plat" placeholder="B 1234 XXX" autocomplete="off" style="text-transform:uppercase"></div>
+      <div class="ig">
+        <div class="ig-lbl">Tipe Unit Armada</div>
+        <select class="ig-inp" id="f-unit" onchange="autoSave()">
+          <option value="Blindvan">Blindvan</option>
+          <option value="L300">L300</option>
+          <option value="Traga">Traga</option>
+          <option value="CDE">CDE</option>
+          <option value="CDE-L">CDE-L</option>
+          <option value="CDD">CDD</option>
+          <option value="CDD-L">CDD-L</option>
+          <option value="Fuso">Fuso</option>
+        </select>
+      </div>
+
       <div class="ig"><div class="ig-lbl">Tanggal Operasional</div><input class="ig-inp" id="f-tgl" type="date"></div>
-      <div class="ig full"><div class="ig-lbl">Rute Armada</div><input class="ig-inp" id="f-rute" value="" autocomplete="off"></div>
+      <div class="ig"><div class="ig-lbl">Rute Armada</div><input class="ig-inp" id="f-rute" placeholder="Rute operasional" autocomplete="off"></div>
+      
       <div class="ig full">
         <div class="ig-lbl">Implant</div>
         <div id="implant-list"></div>
@@ -621,7 +613,7 @@ body{
 
   <div class="sec-label">SS (Staging Store) - Task Drop</div>
   <div id="ss-list"></div>
-  <button class="btn-add" onclick="addSS()">＋ Tambah SS Drop Baru</button>
+  <button class="btn-add" style="width:100%" onclick="addSS()">＋ Tambah SS Drop Baru</button>
 
   <div class="sec-label">PickUp Point (Task Pickup)</div>
   
@@ -641,7 +633,12 @@ body{
   </div>
 
   <div id="stops"></div>
-  <button class="btn-add" onclick="addStop()">＋ Tambah PickUp Point</button>
+  
+  <!-- 🌟 BARIS TOMBOL TAMBAH DAN HAPUS DENGAN HAPUS SELURUH TITIK JEMPUT -->
+  <div class="action-row-btn">
+    <button class="btn-add" onclick="addStop()">＋ Tambah PickUp Point</button>
+    <button class="btn-danger-action" onclick="clearAllStops()">🗑️ Hapus Semua</button>
+  </div>
 
   <div class="sec-label">Rekapitulasi PickUp Point</div>
   <div class="Rekapitulasi-card">
@@ -800,18 +797,18 @@ function renderDatalistBaku() {
 
 const PKEY='bts_p5', DKEY='bts_d5';
 let stopIdx=0, implantIdx=0, ssIdx=0, modalCtx=null, currentReport='';
-let selectedUnitType = "Blindvan";
 
 function $(id){ return document.getElementById(id); }
 function nowt(){ const d=new Date(); return String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0'); }
 function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;'); }
 
-function selectUnit(el, unitName) {
-  document.querySelectorAll('.unit-chip').forEach(c => c.classList.remove('active'));
-  el.classList.add('active');
-  selectedUnitType = unitName;
-  toast(`Tipe Unit: ${unitName}`);
-  autoSave();
+// HELPER FORMAT TANGGAL ISO LOKAL INDONESIA (PRESISI TANPA BENTROK TIMEZONE UTC)
+function getTodayLocalISO() {
+  const d = new Date();
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
 }
 
 function toast(msg){
@@ -987,7 +984,7 @@ function addStop(d={}){
         <option value="Trip 4"${d.trip==='Trip 4'?' selected':''}>Trip 4</option>
         <option value="Trip 5"${d.trip==='Trip 5'?' selected':''}>Trip 5</option>
       </select>
-      <button class="stop-del" onclick="delStop(${i})">×</button>
+      <button class="stop-del" onclick="delStop(${i})" title="Hapus Titik Ini">×</button>
     </div>
     
     <div class="stop-body">
@@ -1025,7 +1022,22 @@ function addStop(d={}){
   calcDev(i); rekal();
 }
 
+// MENGHAPUS SATU TITIK JEMPUT
 function delStop(i){ $(`stop-${i}`)?.remove(); rekal(); autoSave(); }
+
+// 🌟 FUNGSI MENGHAPUS SELURUH DAFTAR TITIK JEMPUT
+function clearAllStops(){
+  const ids = stopIds();
+  if (ids.length === 0) {
+    toast('⚠️ Tidak ada titik jemput untuk dihapus');
+    return;
+  }
+  if (!confirm('Hapus seluruh daftar Titik Jemput (PickUp Point)?')) return;
+  $('stops').innerHTML = '';
+  rekal();
+  autoSave();
+  toast('🗑️ Seluruh titik jemput berhasil dihapus!');
+}
 
 function implantIds(){ return [...document.querySelectorAll('.implant-row')].map(el=>+el.id.split('-')[1]); }
 function addImplant(nama=''){
@@ -1220,9 +1232,14 @@ function resetModal(){
   autoSave(); closeModal(); rekal();
 }
 
+// 🌟 PERBAIKAN RESET HARI BARU DENGAN TANGGAL ISO LOKAL
 function newDay(){
-  if(!confirm('Reset data harian?\n(Nama Titik Jemput & SS tetap tersimpan)')) return;
-  $('f-tgl').value=new Date().toISOString().split('T')[0];
+  if(!confirm('Reset data harian?\n(Nama Titik Jemput & SS tetap tersimpan, jam & kuantitas direset)')) return;
+  
+  const todayISO = getTodayLocalISO();
+  $('f-tgl').value = todayISO;
+  updateDateHeader();
+  
   $('f-noted').value='';
   ['brkt','hub'].forEach(k=>_clearJam(k));
   ssIds().forEach(i=>{
@@ -1234,9 +1251,10 @@ function newDay(){
     const dev=$(`dev-${i}`); if(dev) dev.style.display='none';
     [$(`sp-${i}`),$(`sm-${i}`),$(`sb-${i}`),$(`se-${i}`),$(`sk-${i}`)].forEach(el=>{ if(el) el.value=''; });
   });
-  rekal(); updateDateHeader();
-  localStorage.removeItem(DKEY); autoSave();
-  toast('🔄 Siap untuk hari baru!');
+  rekal();
+  localStorage.removeItem(DKEY);
+  autoSave();
+  toast('🌅 Hari baru disiapkan (' + todayISO + ')!');
 }
 
 function getDateParts(){
@@ -1257,6 +1275,7 @@ function getDateParts(){
 function buildSSReport(i){
   const {hari,tglFmt}=getDateParts();
   const satmob=$('f-satmob').value.trim();
+  const unitType=$('f-unit').value||'Blindvan';
   const plat=$('f-plat').value||'';
   const asmob=$('f-asmob').value.trim();
   const hubStr=$('jbtn-brkt')?.dataset?.t||'--:--';
@@ -1266,7 +1285,7 @@ function buildSSReport(i){
   const ssPaket=+($(`ss-paket-${i}`)?.value||0);
 
   let txt='*REPORT DROP STAGING STORE (SS)*\n\n';
-  txt+=`TIPE UNIT       : ${selectedUnitType}\n`;
+  txt+=`TIPE UNIT       : ${unitType}\n`;
   txt+=`HARI            : ${hari}\n`;
   txt+=`TANGGAL         : ${tglFmt}\n`;
   txt+=`NOPOL           : ${plat}\n`;
@@ -1291,6 +1310,7 @@ function buildAllReport(){
   const yyyy=d.getFullYear();
   const tglFormatted=HARI[d.getDay()]+', '+dd+'/'+mm+'/'+yyyy;
 
+  const unitType=$('f-unit').value||'Blindvan';
   const satmob=$('f-satmob').value.trim();
   const plat=$('f-plat').value||'';
   const asmob=$('f-asmob').value.trim();
@@ -1299,8 +1319,8 @@ function buildAllReport(){
   const brkt=$('jbtn-brkt')?.dataset?.t||'-';
   const hub=$('jbtn-hub')?.dataset?.t||'-';
 
-  let txt='*Daily Report BTS*\n\n';
-  txt+='*Tipe Unit : '+selectedUnitType+'*\n';
+  let txt='*DAILY REPORT*\n\n';
+  txt+='*Tipe Unit : '+unitType+'*\n';
   if(satmob) txt+='*Satmob : '+satmob+'*\n';
   if(asmob) txt+='*Asmob : '+asmob+'*\n';
   implantArr.forEach(nm=>{ txt+='*Implant : '+nm+'*\n'; });
@@ -1444,7 +1464,7 @@ function sendToGSheet() {
   const jamFinish = $(`jbtn-hub`)?.dataset?.t || ($(`jval-hub`)?.textContent !== '--:--' ? $(`jval-hub`)?.textContent : '-');
 
   const payload = {
-    unit_type: selectedUnitType,
+    unit_type: $('f-unit').value || 'Blindvan',
     tanggal: $('f-tgl').value,
     satmob: $('f-satmob').value || '-',
     asmob: $('f-asmob').value || '-',
@@ -1490,7 +1510,7 @@ function autoSave(){ clearTimeout(_st); _st=setTimeout(_doSave,400); }
 function _doSave(){
   try{
     localStorage.setItem(PKEY,JSON.stringify({
-      unit: selectedUnitType,
+      unit: $('f-unit').value,
       satmob:$('f-satmob').value, asmob:$('f-asmob').value,
       implants:implantNames(),
       plat:$('f-plat').value, rute:$('f-rute').value,
@@ -1526,16 +1546,7 @@ function load(){
     if(!pRaw&&!dRaw) return false;
     const p=pRaw?JSON.parse(pRaw):{}, d=dRaw?JSON.parse(dRaw):{};
     
-    if(p.unit) {
-      selectedUnitType = p.unit;
-      document.querySelectorAll('.unit-chip').forEach(chip => {
-        if(chip.textContent.trim() === selectedUnitType) {
-          chip.classList.add('active');
-        } else {
-          chip.classList.remove('active');
-        }
-      });
-    }
+    if(p.unit) $('f-unit').value = p.unit;
 
     $('f-satmob').value=p.satmob||'';
     $('f-asmob').value=p.asmob||'';
@@ -1544,7 +1555,7 @@ function load(){
     implantList.forEach(nm=>addImplant(nm));
     $('f-plat').value=p.plat||'';
     $('f-rute').value=p.rute||'';
-    $('f-tgl').value=d.tgl||new Date().toISOString().split('T')[0];
+    $('f-tgl').value=d.tgl||getTodayLocalISO();
     $('f-noted').value=d.noted||'';
     if(d.brkt) _applyJam('brkt',d.brkt);
     if(d.hub)  _applyJam('hub',d.hub);
@@ -1576,16 +1587,17 @@ document.addEventListener('input', e=>{
   rekal(); autoSave();
 });
 
+// DETEKSI OTOMATIS TANGGAL HARIAN
 function checkNewDay(){
   try{
     const dRaw=localStorage.getItem(DKEY);
     if(!dRaw) return;
     const d=JSON.parse(dRaw);
-    const today=new Date().toISOString().split('T')[0];
-    if(d.tgl && d.tgl!==today){
-      $('f-tgl').value=today;
+    const todayISO = getTodayLocalISO();
+    if(d.tgl && d.tgl !== todayISO){
+      $('f-tgl').value = todayISO;
       updateDateHeader();
-      toast('🌅 Hari baru terdeteksi! Siap reset laporan.');
+      toast('🌅 Hari baru terdeteksi! Tanggal diperbarui.');
     }
   }catch(e){}
 }
@@ -1593,7 +1605,7 @@ function checkNewDay(){
 renderDatalistBaku();
 
 if(!load()){
-  $('f-tgl').value=new Date().toISOString().split('T')[0];
+  $('f-tgl').value=getTodayLocalISO();
   $('f-asmob').value='';
   addImplant();
   $('f-plat').value='';
