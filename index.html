@@ -58,10 +58,10 @@ body{
   backdrop-filter:blur(20px);
   -webkit-backdrop-filter:blur(20px);
   border-bottom:0.5px solid var(--ios-border);
-  padding:10px 16px 12px;
+  padding:10px 16px;
 }
 
-.di-wrap{display:flex;justify-content:center;margin-bottom:10px}
+.di-wrap{display:flex;justify-content:center}
 .di{
   background:#000000;
   border-radius:40px;
@@ -88,39 +88,6 @@ body{
 }
 .di-pill.ok{background:rgba(52,199,89,0.3);color:#4ade80}
 
-/* ── TIPE UNIT ARMADA CAROUSEL ── */
-.unit-sec-label{
-  font-size:10px;font-weight:700;text-transform:uppercase;
-  letter-spacing:0.5px;color:var(--ios-subtext);margin-bottom:6px;
-  padding-left:2px
-}
-.unit-scroll-container{
-  display:flex;gap:8px;overflow-x:auto;
-  scroll-behavior:smooth;padding-bottom:2px;
-  -ms-overflow-style:none;scrollbar-width:none;
-}
-.unit-scroll-container::-webkit-scrollbar{display:none}
-
-.unit-chip{
-  flex:0 0 auto;
-  background:var(--ios-card);
-  border:1px solid var(--ios-border);
-  border-radius:20px;
-  padding:6px 14px;
-  font-size:12px;font-weight:700;
-  color:var(--ios-text);
-  cursor:pointer;
-  transition:all 0.2s ease;
-  display:flex;align-items:center;gap:6px;
-  box-shadow:0 2px 6px rgba(0,0,0,0.02);
-}
-.unit-chip.active{
-  background:var(--ios-blue);
-  color:#ffffff;
-  border-color:var(--ios-blue);
-  box-shadow:0 3px 10px rgba(0,122,255,0.3);
-}
-
 /* ── SUBBAR ── */
 .subbar{
   display:flex;align-items:center;justify-content:space-between;
@@ -146,6 +113,34 @@ body{
   font-size:11px;font-weight:700;letter-spacing:0.5px;
   text-transform:uppercase;color:var(--ios-subtext);
   padding:16px 6px 8px;display:flex;align-items:center;gap:8px
+}
+
+/* ── TIPE UNIT ARMADA CAROUSEL (INSIDE DETIL OPERASIONAL) ── */
+.unit-scroll-container{
+  display:flex;gap:8px;overflow-x:auto;
+  scroll-behavior:smooth;padding:2px 0;
+  -ms-overflow-style:none;scrollbar-width:none;
+}
+.unit-scroll-container::-webkit-scrollbar{display:none}
+
+.unit-chip{
+  flex:0 0 auto;
+  background:var(--ios-card);
+  border:1px solid var(--ios-border);
+  border-radius:20px;
+  padding:6px 14px;
+  font-size:12px;font-weight:700;
+  color:var(--ios-text);
+  cursor:pointer;
+  transition:all 0.2s ease;
+  display:flex;align-items:center;gap:6px;
+  box-shadow:0 2px 6px rgba(0,0,0,0.02);
+}
+.unit-chip.active{
+  background:var(--ios-blue);
+  color:#ffffff;
+  border-color:var(--ios-blue);
+  box-shadow:0 3px 10px rgba(0,122,255,0.3);
 }
 
 /* ── PROGRESS BAR UX ── */
@@ -552,7 +547,7 @@ body{
 </head>
 <body>
 
-<!-- GLASSMORPHISM HEADER -->
+<!-- HEADER DYNAMIC ISLAND ONLY -->
 <header class="ios-header">
   <div class="di-wrap">
     <div class="di">
@@ -563,19 +558,6 @@ body{
       </div>
       <div class="di-pill" id="pill">Draft</div>
     </div>
-  </div>
-
-  <!-- TIPE UNIT ARMADA CAROUSEL -->
-  <div class="unit-sec-label">Tipe Unit Armada Operasional:</div>
-  <div class="unit-scroll-container" id="unitContainer">
-    <div class="unit-chip active" onclick="selectUnit(this, 'Blindvan')">Blindvan</div>
-    <div class="unit-chip" onclick="selectUnit(this, 'L300')">L300</div>
-    <div class="unit-chip" onclick="selectUnit(this, 'Traga')">Traga</div>
-    <div class="unit-chip" onclick="selectUnit(this, 'CDE')">CDE</div>
-    <div class="unit-chip" onclick="selectUnit(this, 'CDE-L')">CDE-L</div>
-    <div class="unit-chip" onclick="selectUnit(this, 'CDD')">CDD</div>
-    <div class="unit-chip" onclick="selectUnit(this, 'CDD-L')">CDD-L</div>
-    <div class="unit-chip" onclick="selectUnit(this, 'Fuso')">Fuso</div>
   </div>
 </header>
 
@@ -588,6 +570,22 @@ body{
 
   <div class="sec-label">Detil Operasional</div>
   <div class="ios-card">
+    
+    <!-- 🌟 TIPE UNIT ARMADA CAROUSEL DI DALAM DETIL OPERASIONAL -->
+    <div class="ig full" style="background:var(--ios-subcard);padding:12px 14px;">
+      <div class="ig-lbl">Tipe Unit Armada</div>
+      <div class="unit-scroll-container" id="unitContainer" style="margin-top:4px;">
+        <div class="unit-chip active" onclick="selectUnit(this, 'Blindvan')">Blindvan</div>
+        <div class="unit-chip" onclick="selectUnit(this, 'L300')">L300</div>
+        <div class="unit-chip" onclick="selectUnit(this, 'Traga')">Traga</div>
+        <div class="unit-chip" onclick="selectUnit(this, 'CDE')">CDE</div>
+        <div class="unit-chip" onclick="selectUnit(this, 'CDE-L')">CDE-L</div>
+        <div class="unit-chip" onclick="selectUnit(this, 'CDD')">CDD</div>
+        <div class="unit-chip" onclick="selectUnit(this, 'CDD-L')">CDD-L</div>
+        <div class="unit-chip" onclick="selectUnit(this, 'Fuso')">Fuso</div>
+      </div>
+    </div>
+
     <div class="ig-grid">
       <div class="ig"><div class="ig-lbl">Satmob (Driver)</div><input class="ig-inp" id="f-satmob" placeholder="Nama driver" autocomplete="off"></div>
       <div class="ig"><div class="ig-lbl">Asmob</div><input class="ig-inp" id="f-asmob" value="" autocomplete="off"></div>
@@ -605,14 +603,14 @@ body{
     <div class="jam-row">
       <div class="jam-col">
         <button class="jbtn" id="jbtn-brkt" onclick="stampJam('brkt')">
-          <div class="jbtn-lbl">🟢 Jam Start Perjalanan</div>
+          <div class="jbtn-lbl">🟢 START</div>
           <div class="jbtn-val" id="jval-brkt">--:--</div>
         </button>
         <button class="jedit" id="jedit-brkt" onclick="openModal('jam','brkt')">✏️ Edit Jam</button>
       </div>
       <div class="jam-col">
         <button class="jbtn" id="jbtn-hub" onclick="stampJam('hub')">
-          <div class="jbtn-lbl">🔴 Jam Finish Perjalanan</div>
+          <div class="jbtn-lbl">🔴 FINISH</div>
           <div class="jbtn-val" id="jval-hub">--:--</div>
         </button>
         <button class="jedit" id="jedit-hub" onclick="openModal('jam','hub')">✏️ Edit Jam</button>
@@ -1191,7 +1189,7 @@ function openModal(type,...args){
   let lbl, cur;
   if(type==='jam'){
     const key=args[0]; modalCtx={type:'jam',key};
-    lbl=key==='brkt'?'Jam Start Perjalanan':'Jam Finish Perjalanan';
+    lbl=key==='brkt'?'START':'FINISH';
     cur=$(`jbtn-${key}`)?.dataset?.t||'';
   } else if(type==='ss'){
     const [key,i]=args; modalCtx={type:'ss',key,i};
