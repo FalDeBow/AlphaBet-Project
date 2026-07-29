@@ -553,7 +553,7 @@ body{
     <div class="di">
       <div class="di-icon">🚚</div>
       <div class="di-info">
-        <div class="di-title">Daily Report Transport</div>
+        <div class="di-title">DAILY REPORT TRANSPORT</div>
         <div class="di-sub" id="di-date">--/--/----</div>
       </div>
       <div class="di-pill" id="pill">Draft</div>
